@@ -23,6 +23,6 @@ const crearArchivo = async (base = 5) => {
 }
 
 
-module.exports = {
-    crearArchivo
-}
+// module.exports = {
+//     crearArchivo
+// }
