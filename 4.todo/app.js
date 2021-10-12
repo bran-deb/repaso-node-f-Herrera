@@ -10,13 +10,8 @@ const main = async () => {
     let opt = ''
 
     do {
-        // opt = await inquireMenu()
-        // console.log({ opt })
-
-
-        const tareas = new Tareas()
-        const tarea = new Tarea('Comprar comida')
-        console.log(tarea)
+        opt = await inquireMenu()
+        console.log({ opt })
 
         await pausa()
 
