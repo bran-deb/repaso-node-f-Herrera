@@ -2,12 +2,12 @@ const { v4: uudiv4 } = require('uuid');
 
 class Tarea {
     id = ''
-    desc = ''
+    descripcion = ''
     completadoEn = null
 
-    constructor(desc) {
+    constructor(descripcion) {
         this.id = uudiv4()
-        this.desc = desc
+        this.descripcion = descripcion
         this.completadoEn = null
     }
 }
