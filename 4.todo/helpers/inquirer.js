@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
+const { validate } = require('uuid');
 require('colors');
 
+// la lista del menu principal
 const preguntas = [
     {
         type: 'list',
@@ -39,6 +41,8 @@ const preguntas = [
     }
 ]
 
+
+//menu principal de la consola
 const inquireMenu = async () => {
     console.clear()
     console.log('======================='.green)
@@ -49,6 +53,7 @@ const inquireMenu = async () => {
     return option
 }
 
+//metodo para pausar y continuar la consola con un enter
 const pausa = async () => {
     const question = [
         {
@@ -61,8 +66,33 @@ const pausa = async () => {
     await inquirer.prompt(question)
 }
 
+//metodo para crear una tarea
+const leerInput = async (message) => {
+    const question = [
+        {
+            type: 'input',
+            name: 'description',
+            message,
+            validate(value) {
+                if (value.length === 0) {       //validar para no ingresar valores no nulos
+                    return 'por favor ingrese un valor'
+                    // }(value.length === 0)
+                    // ? 'Por favor ingrese un valor'
+                    // : true
+                }
+                return true
+            }
+        }
+    ]
+
+    const { description } = await inquirer.prompt(question)
+    return description
+}
+
+
 
 module.exports = {
     inquireMenu,
-    pausa
+    pausa,
+    leerInput
 }
