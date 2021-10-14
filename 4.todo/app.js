@@ -1,4 +1,5 @@
 require('colors')
+const { guardarDB } = require('./db/guardarArchivo');
 const {
     inquireMenu,
     pausa,
@@ -24,11 +25,13 @@ const main = async () => {
                 tareas.crearTarea(descripcion)
                 break;
             case '2':
-                console.log(tareas._listado)
+                console.log(tareas.listadoArr)
                 break
             default:
                 break;
         }
+        //guardamos en el archivo json
+        guardarDB(tareas.listadoArr)
 
         await pausa()
 
