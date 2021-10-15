@@ -16,10 +16,9 @@ const main = async () => {
     const tareas = new Tareas()
 
     const tareasDB = leerDB()
-    if (tareasDB) {
-        //establecer las tareas
+    if (tareasDB) {                                     //cargar tareas
+        tareas.cargarTareasFromArray(tareasDB)          //mandamos a la memoria las tareas de db
     }
-    await pausa()
 
     do {
         opt = await inquireMenu()
@@ -36,7 +35,8 @@ const main = async () => {
             default:
                 break;
         }
-        //guardamos en el archivo json
+
+        //guardamos en el archivo json despues de ejecutar cualquier caso
         guardarDB(tareas.listadoArr)
 
         await pausa()

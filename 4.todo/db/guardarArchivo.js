@@ -10,6 +10,7 @@ const guardarDB = (data) => {
     fs.writeFileSync(archivo, JSON.stringify(data))
 }
 
+
 const leerDB = () => {
 
     if (!fs.existsSync(archivo)) {

@@ -21,11 +21,20 @@ class Tareas {
         this._listado = {}
     }
 
+
     //metodo para crear una nueva tarea mandandole la desc
     crearTarea(descripcion = '') {
 
         const tarea = new Tarea(descripcion)
         this._listado[tarea.id] = tarea
+    }
+
+
+    //metodo para leer las tareas por el key de cada tarea
+    cargarTareasFromArray(tareas = []) {
+        tareas.forEach(tarea => {
+            this._listado[tarea.id] = tarea
+        })
     }
 }
 
