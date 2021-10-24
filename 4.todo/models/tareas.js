@@ -67,14 +67,14 @@ class Tareas {
                 //mostrar completadas
                 if (completadoEn) {
                     contador += 1
-                    console.log(`${contador.toString().green}. ${descripcion}::${estado}`)
+                    console.log(`${(contador + '.').green} ${descripcion}::${completadoEn}`)
 
                 }
             } else {
                 //mostrar tareas pendientes
                 if (!completadoEn) {
                     contador += 1
-                    console.log(`${contador.toString().green}. ${descripcion}::${estado}`)
+                    console.log(`${(contador + '.').green} ${descripcion}::${estado}`)
 
                 }
             }
