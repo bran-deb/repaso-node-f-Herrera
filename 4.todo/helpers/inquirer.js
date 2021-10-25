@@ -98,6 +98,12 @@ const listadoTareasParaBorrar = async (tareas = []) => {
         }
     })
 
+    //agregamos la opcion cero de cancelar (unfhift lo pone al principio del array)
+    choices.unshift({
+        value: '0',
+        name: '0.'.green + 'Cancelar'
+    })
+
     const preguntas = [
         {
             type: 'list',
@@ -110,10 +116,25 @@ const listadoTareasParaBorrar = async (tareas = []) => {
     return id
 }
 
+//mandar mensaje de confirmacion para borrado (y/n)
+const confirmar = async (message) => {
+
+    const preguntas = [
+        {
+            type: 'confirm',//boolean
+            name: 'ok',
+            message
+        }
+    ]
+    const { ok } = await inquirer.prompt(preguntas)//le manda un mensaje de confirmacion
+    return ok
+}
+
 
 module.exports = {
     inquireMenu,
     pausa,
     leerInput,
-    listadoTareasParaBorrar
+    listadoTareasParaBorrar,
+    confirmar
 }
