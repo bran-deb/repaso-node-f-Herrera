@@ -21,6 +21,12 @@ class Tareas {
         this._listado = {}
     }
 
+    borrarTarea(id = '') {
+        if (this._listado[id]) {
+            delete this._listado[id]
+        }
+    }
+
 
     //metodo para crear una nueva tarea mandandole la desc
     crearTarea(descripcion = '') {
