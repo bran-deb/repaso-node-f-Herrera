@@ -49,7 +49,7 @@ const inquireMenu = async () => {
     console.log('seleccione una opcion '.white)
     console.log('=======================\n'.green)
 
-    const { option } = await inquirer.prompt(preguntas)
+    const { option } = await inquirer.prompt(preguntas)//se le manda un array con las opciones
     return option
 }
 
@@ -86,10 +86,34 @@ const leerInput = async (message) => {
     return description
 }
 
+//listado de tareas para borrar
+const listadoTareasParaBorrar = async (tareas = []) => {
+
+    const choices = tareas.map((tarea, i) => {
+
+        const idx = `${i + 1}.`.green
+        return {
+            value: tarea.id,
+            name: `${idx} ${tarea.descripcion}`
+        }
+    })
+
+    const preguntas = [
+        {
+            type: 'list',
+            name: 'id',
+            message: 'Borrar',
+            choices
+        }
+    ]
+    const { id } = await inquirer.prompt(preguntas)//se le manda un array con las opciones
+    return id
+}
 
 
 module.exports = {
     inquireMenu,
     pausa,
-    leerInput
+    leerInput,
+    listadoTareasParaBorrar
 }
