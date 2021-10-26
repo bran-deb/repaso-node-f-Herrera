@@ -59,6 +59,7 @@ class Tareas {
         })
     }
 
+    //muestra una lista de tareas pendientes o completadas
     listarPendientesCompletadas(completadas = true) {
 
         console.log()
@@ -73,7 +74,7 @@ class Tareas {
                 //mostrar completadas
                 if (completadoEn) {
                     contador += 1
-                    console.log(`${(contador + '.').green} ${descripcion}::${completadoEn}`)
+                    console.log(`${(contador + '.').green} ${descripcion}::${completadoEn.green}`)
 
                 }
             } else {
@@ -83,6 +84,25 @@ class Tareas {
                     console.log(`${(contador + '.').green} ${descripcion}::${estado}`)
 
                 }
+            }
+        })
+    }
+
+    //cambia el estado de las tareas pendientes y completadas
+    toggleCompletadas(ids = []) {
+        ids.forEach(id => {
+
+            const tarea = this._listado[id]
+            // si la tarea esta incompleta guardamos la fecha en la que se completa
+            if (!tarea.completadoEn) {
+                tarea.completadoEn = new Date().toISOString()
+            }
+        })
+
+        this.listadoArr.forEach(tarea => {
+            if (!ids.includes(tarea.id)) {
+                tarea = this._listado[tarea.id]
+                tarea.completadoEn = null
             }
         })
     }
