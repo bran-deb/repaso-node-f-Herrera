@@ -5,7 +5,8 @@ const {
     pausa,
     leerInput,
     listadoTareasParaBorrar,
-    confirmar
+    confirmar,
+    mostrarListadoChecklist
 } = require('./helpers/inquirer');
 const Tarea = require('./models/tarea');
 const Tareas = require('./models/tareas');
@@ -43,11 +44,17 @@ const main = async () => {
                 //listar tareas pendientes
                 tareas.listarPendientesCompletadas(false)
                 break
+            case '5':
+                const ids = await mostrarListadoChecklist(tareas.listadoArr)
+                console.log(ids)
+                break
             case '6':
                 //borrrar tareas
                 const id = await listadoTareasParaBorrar(tareas.listadoArr)
+                //verificar si no quiere cancelar
                 if (id !== '0') {
                     const ok = await confirmar('Esta seguro?')
+                    //verifica si quiere borrar tarea
                     if (ok) {
                         tareas.borrarTarea(id)
                         console.log('tarea borrada')

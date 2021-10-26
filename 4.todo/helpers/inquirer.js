@@ -130,11 +130,38 @@ const confirmar = async (message) => {
     return ok
 }
 
+//muestra una lista de tareas completas o incompletas y poder marcarlas
+const mostrarListadoChecklist = async (tareas = []) => {
+
+    const choices = tareas.map((tarea, id) => {
+
+        const idx = id + 1
+        return {
+            value: tarea.id,
+            name: `${idx} ${tarea.descripcion}`,
+            checked: (tarea.completadoEn) ? true : false//muestra la propiedad para ser seleccionado y si esta o no marcado
+        }
+    })
+
+    const pregunta = [
+        {
+            type: 'checkbox',//regresa un array con todos los id seleccionados
+            name: 'ids',
+            message: 'selecciones',
+            choices
+        }
+    ]
+    const { ids } = await inquirer.prompt(pregunta)//nos da un listado seleccionable
+    return ids
+}
+
+
 
 module.exports = {
     inquireMenu,
     pausa,
     leerInput,
     listadoTareasParaBorrar,
-    confirmar
+    confirmar,
+    mostrarListadoChecklist
 }
